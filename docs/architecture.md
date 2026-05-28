@@ -1,16 +1,26 @@
-# Centralized Logging Architecture
+# Centralized Logging Architecture - SOC Lab
 
-## Objective
-El objetivo principal de esta arquitectura es centralizar los logs del sistema desde un nodo cliente hacia un servidor de logs dedicado y seguro utilizando `rsyslog`. Esta implementación garantiza la retención de telemetría, resistencia a la manipulación de datos y un endurecimiento (hardening) básico de la infraestructura.
+## 1. Objetivo del Proyecto
+El objetivo principal de esta arquitectura es centralizar y estructurar la telemetría y los logs del sistema utilizando `rsyslog`. El proyecto está diseñado para demostrar capacidades de gestión de logs, resistencia a la manipulación de datos, análisis forense básico y endurecimiento (hardening) de infraestructura en entornos Linux.
 
-## Network & Topology Plan
-* **Log Server (Receptor):** Dirección IP de tu servidor central (ej. 192.168.1.X)
-* **Client Node (Emisor):** Dirección IP de la máquina que envía los logs (ej. 192.168.1.Y)
-* **Protocol & Port:** UDP / TCP a través del puerto `514`
+## 2. Plan de Topología y Red (Fase 1)
+Para optimizar el uso de recursos en esta primera fase del laboratorio, se implementó un modelo de **autoinyección de telemetría (Single-Node Loopback Sim)**. La misma máquina física actúa como emisor y receptor a través de la interfaz de red real, validando la lógica del pipeline antes de escalar a nodos externos.
 
-## Data Flow
+* **Servidor Central (Receptor):** `soc-lab` (`192.168.0.179`)
+* **Nodo Cliente (Emisor):** `soc-lab` (`192.168.0.179`)
+* **Protocolos y Puertos Activos:** UDP y TCP sobre el puerto estándar `514` (En estado `LISTEN` en todas las interfaces).
 
-1. **Generación:** El nodo cliente genera eventos del sistema (como intentos de inicio de sesión por SSH o uso de comandos sudo).
-2. **Transporte:** El demonio local de `rsyslog` en el cliente reenvía los logs de forma segura a través de la red hacia el servidor.
-3. **Almacenamiento:** El servidor central de `rsyslog` recibe los datos y los almacena en rutas dinámicas separadas por la IP o el nombre de cada cliente.
-4. **Mantenimiento:** La herramienta `logrotate` comprime y gestiona la retención de los archivos para proteger el espacio en disco del servidor.
+## 3. Flujo de Datos Dinámico
+1. **Generación:** El sistema operativo o los usuarios del nodo (ej. el usuario `raude`) generan eventos del sistema (autenticación, comandos `sudo`, eventos de `kernel` o servicios de `systemd`).
+2. **Transporte:** El demonio local de `rsyslog` captura los eventos locales y los redirige a través de la red local apuntando a la IP `192.168.0.179:514`.
+3. **Procesamiento y Clasificación:** El servidor central intercepta el tráfico y, mediante una regla dinámica (`$template RemoteLogs`), segmenta los logs de forma aislada basándose en el nombre de la máquina origen y el servicio emisor.
+4. **Almacenamiento Localizado:** Los archivos finales se escriben en rutas dedicadas con permisos restrictivos:
+   * `/var/log/remote/soc-lab/raude.log` (Logs de usuario)
+   * `/var/log/remote/soc-lab/sudo.log` (Auditoría de privilegios)
+   * `/var/log/remote/soc-lab/kernel.log` (Eventos del núcleo)
+
+## 4. Hardening y Mantenimiento de Disco
+Para mitigar ataques de Denegación de Servicio (DoS) por llenado de disco, se integró una política estricta de rotación de logs mediante `logrotate`:
+* **Frecuencia:** Diaria (`daily`).
+* **Retención:** 7 días de historial (`rotate 7`).
+* **Optimización:** Compresión automática en formato `.gz` (`compress`) con retraso de un ciclo (`delaycompress`) para mantener accesibles los logs más recientes de forma inmediata.
