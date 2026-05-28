@@ -1,0 +1,11 @@
+# Ignorar archivos temporales de editores de texto
+*.swp
+*~
+.DS_Store
+.directory
+
+# Ignorar logs locales de prueba o archivos comprimidos accidentales
+*.log
+*.gz
+*.zip
+*.tar
