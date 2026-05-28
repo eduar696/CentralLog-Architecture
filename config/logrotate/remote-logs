@@ -1,0 +1,17 @@
+# ==========================================
+# CentralLog-Architecture: Logrotate Configuration
+# ==========================================
+
+# Apuntar a todos los archivos .log dentro de las carpetas dinámicas de los clientes
+/var/log/remote/*/*.log {
+    daily
+    rotate 7
+    missingok
+    notifempty
+    compress
+    delaycompress
+    sharedscripts
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
+}
