@@ -30,10 +30,4 @@ graph TD
 ```
 👤 Autor
 
-Eduardo (Eduar) - Ingeniero Informático & Entusiasta de la Ciberseguridad
-
-GitHub: Mi Perfil de GitHub
-
-LinkedIn: Mi Perfil de LinkedIn
-
 Proyecto desarrollado con mentalidad autodidacta, enfocado en la optimización extrema de recursos y hardening de sistemas operativos.
