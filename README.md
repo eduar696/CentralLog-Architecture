@@ -28,6 +28,6 @@ graph TD
     style A fill:#111827,stroke:#10b981,stroke-width:2px,color:#fff
     style D fill:#111827,stroke:#f59e0b,stroke-width:2px,color:#fff
 ```
-👤 Autor
+👤 Autor: CyberSentinel 
 
 Proyecto desarrollado con mentalidad autodidacta, enfocado en la optimización extrema de recursos y hardening de sistemas operativos.
