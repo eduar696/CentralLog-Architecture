@@ -27,3 +27,14 @@ graph TD
     style B fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#fff
     style A fill:#111827,stroke:#10b981,stroke-width:2px,color:#fff
     style D fill:#111827,stroke:#f59e0b,stroke-width:2px,color:#fff
+
+
+👤 Autor
+
+    Eduardo (Eduar) - Ingeniero Informático & Entusiasta de la Ciberseguridad
+
+    GitHub: Mi Perfil de GitHub
+
+    LinkedIn: Mi Perfil de LinkedIn
+
+Proyecto desarrollado con mentalidad autodidacta, enfocado en la optimización extrema de recursos y hardening de sistemas operativos.
