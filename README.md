@@ -1,11 +1,7 @@
-# CentralLog-Architecture 🚀
-### Arquitectura de Centralización de Logs, Telemetría y Hardening en Linux
+## 📊 Topología de la Red (Arquitectura del Laboratorio)
 
-Este proyecto despliega una infraestructura robusta de ingeniería de sistemas para la centralización y auditoría de logs del sistema. Permite recolectar trazas de eventos procedentes de clientes remotos en un servidor centralizado utilizando **Rsyslog**, aplicando además políticas estrictas de retención de datos con **Logrotate** y controles defensivos con firewall UFW.
+A continuación se detalla el flujo de la telemetría, el direccionamiento IP y los controles defensivos implementados entre los nodos mediante este diagrama en Mermaid:
 
----
-
-## 📊 Arquitectura de la Red (Topología del Laboratorio)
 
 
 ```mermaid
