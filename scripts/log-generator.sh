@@ -2,14 +2,15 @@
 # ========================================================
 # SIMULADOR DE EVENTOS Y TELEMETRÍA (Log Generator)
 # Proyecto: CentralLog-Architecture
+# Descripción: Automatiza trazas de seguridad para validación
 # ========================================================
 
-echo "[+] Iniciando simulación de eventos en soc-lab..."
+echo "[+] Iniciando simulación de eventos de telemetría..."
 
 # 1. Simulación de Ataque de Fuerza Bruta (SSH Failures)
 echo "[*] Generando eventos de autenticación fallida (Auth)..."
 for i in {1..3}; do
-    logger -p auth.warning -t sshd "Failed password for invalid user admin$i from 192.168.1.50 port 49152 ssh2"
+    logger -p auth.warning -t sshd "Failed password for invalid user admin$i from 192.168.0.50 port 49152 ssh2"
     sleep 0.5
 done
 
