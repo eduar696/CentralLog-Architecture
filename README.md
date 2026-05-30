@@ -29,10 +29,3 @@ graph TD
     style D fill:#111827,stroke:#f59e0b,stroke-width:2px,color:#fff
 ---
 
-## 👤 Autor
-
-* **Eduardo (Eduar)** - *Ingeniero Informático & Entusiasta de la Ciberseguridad*
-* **GitHub:** [@tu_usuario_de_github](https://github.com/tu_usuario_de_github)
-* **LinkedIn:** [Tu Nombre en LinkedIn](https://linkedin.com/in/tu_perfil)
-
-*Proyecto desarrollado con mentalidad autodidacta, enfocado en optimización de recursos y hardening de sistemas.*
