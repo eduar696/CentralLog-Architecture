@@ -7,7 +7,6 @@ Este proyecto despliega una infraestructura robusta de ingeniería de sistemas p
 
 ## 📊 Arquitectura de la Red (Topología del Laboratorio)
 
-GitHub renderizará automáticamente este flujo interactivo gracias al motor de Mermaid integrado:
 
 ```mermaid
 graph TD
